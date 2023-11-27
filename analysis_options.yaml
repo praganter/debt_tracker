@@ -7,7 +7,9 @@ analyzer:
     - "/*.freezed.dart"
     - "bin/cache/**"
     - "lib/generated_plugin_registrant.dart"
+    - "*/firebase_options.dart"
 
 linter:
   rules:
     public_member_api_docs: false
+    sort_pub_dependencies: false
