@@ -2,12 +2,14 @@ include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
+    - "*.g.dart"
     - "/*.g.dart"
     - "/*.gen.dart"
     - "/*.freezed.dart"
     - "bin/cache/**"
     - "lib/generated_plugin_registrant.dart"
     - "*/firebase_options.dart"
+    - "generated/"
 
 linter:
   rules:
