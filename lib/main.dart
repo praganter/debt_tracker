@@ -1,3 +1,4 @@
+import 'package:debt_tracker/core/localization/export.dart';
 import 'package:debt_tracker/feature/auth/auth_view.dart';
 import 'package:debt_tracker/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +16,15 @@ Future<void> main() async {
       EmailAuthProvider(),
     ],
   );
-  runApp(const ProviderScope(child: MainApp()));
+  await LocalizationInit.init();
+
+  runApp(
+    ProviderScope(
+      child: LocalizationInit(
+        child: const MainApp(),
+      ),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -24,6 +33,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: ThemeData.dark(),
       home: const AuthView(),
     );
