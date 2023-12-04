@@ -22,19 +22,91 @@ class _AuthViewState extends ConsumerState<AuthView> with AuthMixin<AuthView> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TrText(LocaleKeys.auth_login),
-          EmailUserForm(
-            focusNode: eMailFocusNode,
-            tec: eMailTec,
-            isEMail: true,
-            checkValidity: checkEmailValidity,
-          ),
-          PasswordForm(
-            tec: passwordTec,
-            isPasswordObscure: isPasswordObscured,
-            focusNode: passwordFocusNode,
-            onHidePass: obscurePassword,
-            checkValidity: checkPasswordValidity,
+          const Spacer(),
+          const Icon(Icons.language_rounded, size: 150),
+          const Spacer(),
+          DecoratedBox(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(45),
+                topRight: Radius.circular(45),
+              ),
+              color: Colors.deepOrange,
+            ),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    TrText(
+                      isRegister ? LocaleKeys.auth_register : LocaleKeys.auth_login,
+                      textScaler: const TextScaler.linear(3),
+                    ),
+                    if (isRegister)
+                      EmailUserForm(
+                        focusNode: nameFocusNode,
+                        tec: nameTec,
+                        isEMail: false,
+                      ),
+                    EmailUserForm(
+                      focusNode: eMailFocusNode,
+                      tec: eMailTec,
+                      isEMail: true,
+                      checkValidity: checkEmailValidity,
+                    ),
+                    PasswordForm(
+                      tec: passwordTec,
+                      isPasswordObscure: isPasswordObscured,
+                      focusNode: passwordFocusNode,
+                      onHidePass: obscurePassword,
+                      checkValidity: checkPasswordValidity,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: TrText(LocaleKeys.auth_forget_password),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        if (!isRegister)
+                          ElevatedButton(
+                            onPressed: () async {
+                              await login();
+                            },
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                            child: TrText(
+                              LocaleKeys.auth_login,
+                            ),
+                          ),
+                        ElevatedButton(
+                          onPressed: register,
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                          child: TrText(
+                            LocaleKeys.auth_register,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),

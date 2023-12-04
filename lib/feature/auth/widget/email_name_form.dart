@@ -24,9 +24,9 @@ class EmailUserForm extends StatelessWidget {
       focusNode: focusNode,
       decoration: InputDecoration(
         floatingLabelBehavior: FloatingLabelBehavior.never,
-        labelText: isEMail ? 'E-mail' : 'Düzelt artık be adam',
+        labelText: isEMail ? LocaleKeys.auth_eMail : LocaleKeys.auth_userName,
         isDense: true,
-        prefixIcon: const Icon(Icons.mail, size: 24),
+        prefixIcon: isEMail ? const Icon(Icons.mail, size: 24) : const Icon(Icons.person, size: 24),
       ),
     );
   }

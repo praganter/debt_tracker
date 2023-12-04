@@ -1,21 +1,12 @@
 import 'package:debt_tracker/core/localization/export.dart';
 import 'package:debt_tracker/feature/auth/auth_view.dart';
-import 'package:debt_tracker/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:debt_tracker/product/init/firebase_init.dart';
+import 'package:debt_tracker/product/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  FirebaseUIAuth.configureProviders(
-    [
-      EmailAuthProvider(),
-    ],
-  );
+  await FirebaseInit.init();
   await LocalizationInit.init();
 
   runApp(
@@ -37,7 +28,18 @@ class MainApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData.dark(),
-      home: const AuthView(),
+      home: AuthService.isLoggedIn()
+          ? Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await AuthService.logOut();
+                  },
+                  child: const Text('asd'),
+                ),
+              ),
+            )
+          : const AuthView(),
     );
   }
 }
