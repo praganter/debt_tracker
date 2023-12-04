@@ -2,6 +2,7 @@
     "auth": {
         "login": "Giriş",
         "register": "Kayıt Ol",
+        "userName": "Kullanıcı Adı",
         "eMail": "E-posta",
         "password": "Şifre",
         "forget_password": "Şifremi Unuttum",
