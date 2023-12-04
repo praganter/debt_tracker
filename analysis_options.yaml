@@ -9,7 +9,7 @@ analyzer:
     - "bin/cache/**"
     - "lib/generated_plugin_registrant.dart"
     - "*/firebase_options.dart"
-    - "*/generated/"
+    - "**/generated/"
 
 linter:
   rules:
