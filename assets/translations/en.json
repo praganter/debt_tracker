@@ -1,0 +1,11 @@
+{
+    "auth": {
+        "login": "Login",
+        "register": "Register",
+        "eMail": "E-mail",
+        "password": "Password",
+        "forget_password": "Forget Password",
+        "dont_have_an_account": "Don't Have An Account ?",
+        "create_account": "Create Account"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "auth": {
+        "login": "Giriş",
+        "register": "Kayıt Ol",
+        "eMail": "E-posta",
+        "password": "Şifre",
+        "forget_password": "Şifremi Unuttum",
+        "dont_have_an_account": "Hesabın yok mu ?",
+        "create_account": "Hesap Yarat"
+    }
+}
